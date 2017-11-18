@@ -5,7 +5,8 @@ import com.bookchronus.karthickpdy.bookchronus.presentation.BaseView
 /**
  * Created by Jyoti on 08/07/17.
  */
-interface BookListView : BaseView{
+interface BookListView : BaseView {
     fun showSuccessMessage()
     fun showErrorMessage()
+    fun openAddNewBookEntryPage()
 }

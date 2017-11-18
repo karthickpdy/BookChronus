@@ -9,4 +9,5 @@ import com.bookchronus.karthickpdy.bookchronus.presentation.books.view.BookListV
 
 interface BookListPresenter : Presenter<BookListView> {
     fun loadBookList()
+    fun onAddNewBookFabClicked();
 }

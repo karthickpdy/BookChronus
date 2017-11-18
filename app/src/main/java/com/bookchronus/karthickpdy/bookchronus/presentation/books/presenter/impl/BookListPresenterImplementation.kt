@@ -25,4 +25,7 @@ class BookListPresenterImplementation : BookListPresenter{
         this.view = view
     }
 
+    override fun onAddNewBookFabClicked() {
+        view?.openAddNewBookEntryPage()
+    }
 }

@@ -1,9 +1,11 @@
 package com.bookchronus.karthickpdy.bookchronus.ui.books.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
-import android.widget.Toast
+import android.support.design.widget.FloatingActionButton
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import butterknife.Unbinder
 import com.bookchronus.karthickpdy.bookchronus.R
 import com.bookchronus.karthickpdy.bookchronus.presentation.books.presenter.BookListPresenter
 import com.bookchronus.karthickpdy.bookchronus.presentation.books.presenter.impl.BookListPresenterImplementation
@@ -11,7 +13,10 @@ import com.bookchronus.karthickpdy.bookchronus.presentation.books.view.BookListV
 
 class BookListActivity : AppCompatActivity(), BookListView {
 
-    internal var bookListPresenter: BookListPresenter? = BookListPresenterImplementation()
+    @BindView(R.id.add_book_entry)
+    lateinit var addBookEntry: FloatingActionButton
+
+    internal var presenter: BookListPresenter? = BookListPresenterImplementation()
 
     override fun showAppError() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -31,12 +36,23 @@ class BookListActivity : AppCompatActivity(), BookListView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_list)
-        bookListPresenter!!.onViewCreated(this)
-        bookListPresenter!!.loadBookList()
+        ButterKnife.bind(this)
+        presenter!!.onViewCreated(this)
+        presenter!!.loadBookList()
     }
 
     override fun onDestroy() {
-        bookListPresenter?.onViewDestroyed()
+        presenter?.onViewDestroyed()
         super.onDestroy()
+    }
+
+    override fun openAddNewBookEntryPage() {
+        val intent = AddNewBookActivity.getIntent(this)
+        startActivity(intent)
+    }
+
+    @OnClick(R.id.add_book_entry)
+    internal fun openAddBookEntryPage() {
+        presenter?.onAddNewBookFabClicked();
     }
 }
