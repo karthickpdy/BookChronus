@@ -1,20 +1,13 @@
 package com.bookchronus.karthickpdy.bookchronus.ui.books.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
-import butterknife.Unbinder
 import com.bookchronus.karthickpdy.bookchronus.R
 import com.bookchronus.karthickpdy.bookchronus.presentation.books.presenter.BookListPresenter
 import com.bookchronus.karthickpdy.bookchronus.presentation.books.presenter.impl.BookListPresenterImplementation
 import com.bookchronus.karthickpdy.bookchronus.presentation.books.view.BookListView
+import kotlinx.android.synthetic.main.activity_book_list.*
 
 class BookListActivity : AppCompatActivity(), BookListView {
-
-    @BindView(R.id.add_book_entry)
-    lateinit var addBookEntry: FloatingActionButton
 
     internal var presenter: BookListPresenter? = BookListPresenterImplementation()
 
@@ -36,7 +29,7 @@ class BookListActivity : AppCompatActivity(), BookListView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_list)
-        ButterKnife.bind(this)
+        setClickListeners()
         presenter!!.onViewCreated(this)
         presenter!!.loadBookList()
     }
@@ -51,8 +44,7 @@ class BookListActivity : AppCompatActivity(), BookListView {
         startActivity(intent)
     }
 
-    @OnClick(R.id.add_book_entry)
-    internal fun openAddBookEntryPage() {
-        presenter?.onAddNewBookFabClicked();
+    private fun setClickListeners() {
+        add_book_entry.setOnClickListener { presenter?.onAddNewBookFabClicked() }
     }
 }
