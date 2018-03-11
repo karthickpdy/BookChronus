@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.books.activity.BookListActivity"
+        <activity android:name=".presentation.ui.activities.BookListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.books.activity.AddNewBookActivity"
+        <activity android:name=".presentation.ui.activities.AddNewBookActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
